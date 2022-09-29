@@ -23,9 +23,10 @@ class ProductItem extends StatelessWidget {
         decoration: BoxDecoration(border: Border.all(color: Colors.black)),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (ctx) => ProductDetailScreen(title),
-            ));
+            Navigator.of(context).pushNamed(
+              ProductDetailScreen.routeName,
+              arguments: id,
+            );
           },
           child: GridTile(
             header: GridTileBar(
