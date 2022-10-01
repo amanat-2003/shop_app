@@ -6,19 +6,19 @@ class Products with ChangeNotifier {
   List<Product> _items = [
     Product(
       id: 'p1',
-      title: 'Red Shirt',
-      description: 'A red shirt - it is pretty red!',
+      title: 'Tommy Hilfiger T Shirt',
+      description: 'A Tommy Hilfiger T Shirt - it is pretty cool!',
       price: 29.99,
       imageUrl:
-          'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
+          'https://assets.ajio.com/medias/sys_master/root/h6d/hdf/16111127592990/-1117Wx1400H-460617420-grey-MODEL.jpg',
     ),
     Product(
       id: 'p2',
-      title: 'Trousers',
-      description: 'A nice pair of trousers.',
-      price: 59.99,
+      title: 'Gucci Jeans',
+      description: 'A nice pair of jeans.',
+      price: 3100,
       imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
+          'https://cdn.luxatic.com/wp-content/uploads/2015/07/The-top-ten-most-expensive-jeans-brands-00006.jpg',
     ),
     Product(
       id: 'p3',
@@ -26,7 +26,8 @@ class Products with ChangeNotifier {
       description: 'Warm and cozy - exactly what you need for the winter.',
       price: 19.99,
       imageUrl:
-          'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
+          // 'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
+          'https://static.cilory.com/117774-thickbox_default/red-riding-spectra-yellow-scarf.jpg',
     ),
     Product(
       id: 'p4',
@@ -34,12 +35,17 @@ class Products with ChangeNotifier {
       description: 'Prepare any meal you want.',
       price: 49.99,
       imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
+          // 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
+          'https://www.ikea.com/in/en/images/products/kavalkad-frying-pan-black__0241981_pe381624_s5.jpg?f=xs',
     ),
   ];
 
   List<Product> get items {
     return [..._items];
+  }
+
+  Product findById(String id) {
+    return _items.firstWhere((product) => product.id == id);
   }
 
   void addProduct() {
