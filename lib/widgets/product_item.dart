@@ -34,22 +34,15 @@ class ProductItem extends StatelessWidget {
             footer: GridTileBar(
               backgroundColor: Colors.black87,
               leading: Consumer<Product>(
-                builder: (ctx, product, ch) => TextButton.icon(onPressed: () {
-                    product.toggleFavouriteStatus();
-                  }, icon: Icon(product.isFavourite
+                builder: (ctx, product, _) => IconButton(
+                  icon: Icon(product.isFavourite
                       ? Icons.favorite
                       : Icons.favorite_border),
-                   label: ch),
-                // IconButton(
-                  // icon: Icon(product.isFavourite
-                  //     ? Icons.favorite
-                  //     : Icons.favorite_border),
-                  // onPressed: () {
-                  //   product.toggleFavouriteStatus();
-                  // },
-                //   color: Theme.of(context).accentColor,
-                // ),
-                child: Text("Not Rebuild!"),
+                  onPressed: () {
+                    product.toggleFavouriteStatus();
+                  },
+                  color: Theme.of(context).accentColor,
+                ),
               ),
               subtitle: Text(product.price.toString()),
               trailing: IconButton(
