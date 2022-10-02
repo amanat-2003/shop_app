@@ -40,9 +40,25 @@ class Products with ChangeNotifier {
     ),
   ];
 
+  // var _showFavouritesOnly = false;
+
   List<Product> get items {
-    return [..._items];
+    // if (_showFavouritesOnly) {
+    //   return [..._items.where((product) => product.isFavourite).toList()];
+    // } else {
+      return [..._items];
+    // }
   }
+
+  // void showFavouritesOnly() {
+  //   _showFavouritesOnly = true;
+  //   notifyListeners();
+  // }
+
+  // void showAll() {
+  //   _showFavouritesOnly = false;
+  //   notifyListeners();
+  // }
 
   Product findById(String id) {
     return _items.firstWhere((product) => product.id == id);
