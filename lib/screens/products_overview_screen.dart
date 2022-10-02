@@ -23,11 +23,13 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         actions: [
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {
-              if (selectedValue == FilterOptions.Favourites) {
-                _showOnlyFavourites = true;
-              } else if (selectedValue == FilterOptions.All) {
-                _showOnlyFavourites = false;
-              }
+              setState(() {
+                if (selectedValue == FilterOptions.Favourites) {
+                  _showOnlyFavourites = true;
+                } else if (selectedValue == FilterOptions.All) {
+                  _showOnlyFavourites = false;
+                }
+              });
             },
             itemBuilder: (_) => [
               PopupMenuItem(
