@@ -23,6 +23,10 @@ class Orders with ChangeNotifier {
     return [..._orders];
   }
 
+  int get orderCount {
+    return _orders.length;
+  }
+
   void addOrder(List<CartItem> cartProducts, double total) {
     _orders.insert(
         0,
