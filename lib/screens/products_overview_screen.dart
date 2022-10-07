@@ -40,7 +40,10 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               PopupMenuItem(
                   child: Text("Only Favourites"),
                   value: FilterOptions.Favourites),
-              PopupMenuItem(child: Text("Show All"), value: FilterOptions.All),
+              PopupMenuItem(
+                child: Text("Show All"),
+                value: FilterOptions.All,
+              ),
             ],
             icon: Icon(
               Icons.more_vert,
