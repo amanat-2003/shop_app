@@ -35,7 +35,36 @@ class UserProductItem extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                Provider.of<Products>(context, listen: false).deleteProduct(id);
+                showDialog(
+                  context: context,
+                  builder: ((context) => AlertDialog(
+                        title: Text('Are you sure?'),
+                        content: Text(
+                            'Do you want to delete your product permanently?'),
+                        actions: [
+                          IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.close,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Provider.of<Products>(context, listen: false)
+                                  .deleteProduct(id);
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              Icons.check,
+                              color: Theme.of(context).errorColor,
+                            ),
+                          ),
+                        ],
+                      )),
+                );
               },
               icon: Icon(Icons.delete),
               color: Theme.of(context).errorColor,
