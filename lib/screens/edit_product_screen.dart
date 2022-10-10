@@ -71,12 +71,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
   void _updateImageUrl() {
     if (!_imageUrlFocusNode.hasFocus) {
       if ((!(_imageUrlTextEditingController.text.startsWith('http') ||
-          _imageUrlTextEditingController.text.startsWith('https')))) //||
-      // (!_imageUrlTextEditingController.text.endsWith('.png') &&
-      //         !_imageUrlTextEditingController.text.endsWith('.jpg') &&
-      //         !_imageUrlTextEditingController.text.endsWith('.jpeg')) &&
-      //     !(_imageUrlTextEditingController.text.isEmpty))
-      {
+              _imageUrlTextEditingController.text.startsWith('https'))) ||
+          (!_imageUrlTextEditingController.text.endsWith('.png') &&
+                  !_imageUrlTextEditingController.text.endsWith('.jpg') &&
+                  !_imageUrlTextEditingController.text.endsWith('.jpeg')) &&
+              !(_imageUrlTextEditingController.text.isEmpty)) {
         return;
       }
       setState(() {});
@@ -241,12 +240,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           } else if (!(value.startsWith('http') ||
                               value.startsWith('https'))) {
                             return 'Please enter a valid URL.';
-                          }
-                          // else if (!value.endsWith('.png') &&
-                          //     !value.endsWith('.jpg') &&
-                          //     !value.endsWith('.jpeg')) {
-                          //   return 'Please enter a valid image URL.';}
-                          else {
+                          } else if (!value.endsWith('.png') &&
+                              !value.endsWith('.jpg') &&
+                              !value.endsWith('.jpeg')) {
+                            return 'Please enter a valid image URL.';
+                          } else {
                             return null;
                           }
                         }),
