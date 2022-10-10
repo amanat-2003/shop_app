@@ -11,7 +11,7 @@ class Products with ChangeNotifier {
       price: 29.99,
       imageUrl:
           'https://assets.ajio.com/medias/sys_master/root/h6d/hdf/16111127592990/-1117Wx1400H-460617420-grey-MODEL.jpg',
-          // 'https://toppng.com/uploads/preview/white-t-shirt-front-11563545790ekdvnznxsd.png',
+      // 'https://toppng.com/uploads/preview/white-t-shirt-front-11563545790ekdvnznxsd.png',
     ),
     Product(
       id: 'p2',
@@ -69,8 +69,16 @@ class Products with ChangeNotifier {
     return _items.firstWhere((product) => product.id == id);
   }
 
-  void addProduct() {
-    // _items.add(val);
+  void addProduct(Product product) {
+    final newProduct = Product(
+      id: DateTime.now().toString(),
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      imageUrl: product.imageUrl,
+    );
+    _items.add(newProduct); // at the end of the list
+    // _items.insert(0, newProduct); // at the start if the list
     notifyListeners();
   }
 }
