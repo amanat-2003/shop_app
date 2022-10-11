@@ -62,7 +62,10 @@ class UserProductItem extends StatelessWidget {
                               } catch (error) {
                                 scaffold.showSnackBar(
                                   SnackBar(
-                                    content: Text('Deleting Failed! ${error.toString()}', textAlign: TextAlign.center,),
+                                    content: Text(
+                                      'Deleting Failed! ${error.toString()}',
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 );
                               }

@@ -8,6 +8,7 @@ import '../providers/cart.dart';
 class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final scaffold = ScaffoldMessenger.of(context);
     final product = Provider.of<Product>(context, listen: false);
     final cart = Provider.of<Cart>(context, listen: false);
     print("Product item rebuilds");
@@ -40,8 +41,19 @@ class ProductItem extends StatelessWidget {
                   icon: Icon(product.isFavourite
                       ? Icons.favorite
                       : Icons.favorite_border),
-                  onPressed: () {
-                    product.toggleFavouriteStatus();
+                  onPressed: () async {
+                    try {
+                      await product.toggleFavouriteStatus();
+                    } catch (error) {
+                      scaffold.showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Changing Favourite Status Failed!',
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      );
+                    }
                   },
                   color: Theme.of(context).accentColor,
                 ),
