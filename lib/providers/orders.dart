@@ -30,6 +30,38 @@ class Orders with ChangeNotifier {
     return _orders.length;
   }
 
+  Future<void> fetchAndSetOrders() async {
+    final url = Uri.parse(
+        'https://flutter-app-6ab90-default-rtdb.firebaseio.com/orders.json');
+    final response = await http.get(url);
+    final List<OrderItem> loadedOrders = [];
+    // print(json.decode(response.body));
+    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+    if (extractedData == null) {
+      return;
+    }
+    extractedData.forEach((orderId, orderData) {
+      loadedOrders.add(
+        OrderItem(
+          id: orderId,
+          amount: orderData['amount'],
+          dateTime: DateTime.parse(orderData['dateTime']),
+          // products: (orderData['products'] as List<Map<String, dynamic>>).map((e) => null).toList(),
+          products: (orderData['products'] as List<dynamic>)
+              .map((item) => CartItem(
+                    id: item['id'],
+                    title: item['title'],
+                    quantity: item['quantity'],
+                    price: item['price'],
+                  ))
+              .toList(),
+        ),
+      );
+    });
+    _orders = loadedOrders.reversed.toList();
+    notifyListeners();
+  }
+
   Future<void> addOrder(List<CartItem> cartProducts, double total) async {
     final url = Uri.parse(
         'https://flutter-app-6ab90-default-rtdb.firebaseio.com/orders.json');
@@ -38,12 +70,14 @@ class Orders with ChangeNotifier {
         body: json.encode({
           'amount': total,
           'dateTime': timestamp.toIso8601String(),
-          'products': cartProducts.map((cp) => {
-            'id': cp.id,
-            'title':cp.title,
-            'quantity':cp.quantity,
-            'price':cp.price,
-          }).toList(),
+          'products': cartProducts
+              .map((cp) => {
+                    'id': cp.id,
+                    'title': cp.title,
+                    'quantity': cp.quantity,
+                    'price': cp.price,
+                  })
+              .toList(),
         }));
 
     _orders.insert(
