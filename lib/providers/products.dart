@@ -97,9 +97,11 @@ class Products with ChangeNotifier {
       _items.add(newProduct); // at the end of the list
       // _items.insert(0, newProduct); // at the start if the list
       notifyListeners();
-    }).catchError((error) {
-      print(error);
     });
+    // .catchError<void>((error) {
+    //   print(error);
+    //   throw error;
+    // });
   }
 
   void updateProduct(String id, Product newProduct) {
