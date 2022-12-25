@@ -19,36 +19,38 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (ctx) => Products(),
-        ),
-        ChangeNotifierProvider(
-          create: (ctx) => Cart(),
-        ),
-        ChangeNotifierProvider(
-          create: (ctx) => Orders(),
-        ),
-        ChangeNotifierProvider(
-          create: (ctx) => Auth(),
-        ),
-      ],
-      child: MaterialApp(
-        title: 'MyShop',
-        theme: ThemeData(
-          primarySwatch: Colors.cyan,
-          accentColor: Colors.yellowAccent,
-          fontFamily: 'Lato',
-        ),
-        home: AuthScreen(),
-        routes: {
-          ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
-          CartScreen.routeName: (ctx) => CartScreen(),
-          OrdersScreen.routeName: (ctx) => OrdersScreen(),
-          UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
-          EditProductScreen.routeName: (ctx) => EditProductScreen(),
-        },
-      ),
-    );
+        providers: [
+          ChangeNotifierProvider(
+            create: (ctx) => Products(),
+          ),
+          ChangeNotifierProvider(
+            create: (ctx) => Cart(),
+          ),
+          ChangeNotifierProvider(
+            create: (ctx) => Orders(),
+          ),
+          ChangeNotifierProvider(
+            create: (ctx) => Auth(),
+          ),
+        ],
+        child: Consumer<Auth>(
+          builder: (ctx, authObjNearst, _) => MaterialApp(
+            title: 'MyShop',
+            theme: ThemeData(
+              primarySwatch: Colors.cyan,
+              accentColor: Colors.yellowAccent,
+              fontFamily: 'Lato',
+            ),
+            home:
+                authObjNearst.isAuth ? ProductsOverviewScreen() : AuthScreen(),
+            routes: {
+              ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
+              CartScreen.routeName: (ctx) => CartScreen(),
+              OrdersScreen.routeName: (ctx) => OrdersScreen(),
+              UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
+              EditProductScreen.routeName: (ctx) => EditProductScreen(),
+            },
+          ),
+        ));
   }
 }
