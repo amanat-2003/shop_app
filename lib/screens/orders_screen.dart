@@ -28,7 +28,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
     print('Building Orders');
-    // final ordersData2 = Provider.of<Orders>(context);
+    // final ordersData = Provider.of<Orders>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Orders!"),
@@ -46,6 +46,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 child: Text('An error occured!'),
               );
             } else {
+              // return ListView.builder(
+              //   itemCount: ordersData.orderCount,
+              //   itemBuilder: (ctx, i) => OrderItem(ordersData.orders[i]),
+              // );
               return Consumer<Orders>(
                 builder: (ctx, ordersData, chi) => ListView.builder(
                   itemCount: ordersData.orderCount,
