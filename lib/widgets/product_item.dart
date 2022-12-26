@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../screens/product_detail_screen.dart';
 import '../providers/product.dart';
 import '../providers/cart.dart';
+import '../providers/auth.dart';
 
 class ProductItem extends StatelessWidget {
   @override
@@ -11,6 +12,7 @@ class ProductItem extends StatelessWidget {
     final scaffold = ScaffoldMessenger.of(context);
     final product = Provider.of<Product>(context, listen: false);
     final cart = Provider.of<Cart>(context, listen: false);
+    final authData = Provider.of<Auth>(context, listen: false);
     print("Product item rebuilds");
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
@@ -43,7 +45,7 @@ class ProductItem extends StatelessWidget {
                       : Icons.favorite_border),
                   onPressed: () async {
                     try {
-                      await product.toggleFavouriteStatus();
+                      await product.toggleFavouriteStatus(authData.token);
                     } catch (error) {
                       scaffold.showSnackBar(
                         SnackBar(
