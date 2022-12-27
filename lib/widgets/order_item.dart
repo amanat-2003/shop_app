@@ -30,7 +30,7 @@ class _OrderItemState extends State<OrderItem>
       parent: _controller,
       curve: Curves.easeIn,
     ));
-    _slideAnimation = Tween<Offset>(begin: Offset(-2, -2), end: Offset(0, 0))
+    _slideAnimation = Tween<Offset>(begin: Offset(0, -2), end: Offset(0, 0))
         .animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.bounceIn,
